@@ -1,11 +1,17 @@
 import React from 'react';
 import {render} from 'react-dom';
-import {Layer, Rect, Stage, Circle} from 'react-konva';
+import {Layer, Rect, Stage, Text, Circle} from 'react-konva';
 import AwesomeComponent from './AwesomeComponent.jsx';
 
 class MyCanvas extends React.Component {
+  onDrag () {
+    console.log('drag');
+  }
+
+
   componentDidMount() {
     console.log(this.refs.stage);
+    console.log("hi");
   }
 
   render () {
@@ -13,7 +19,11 @@ class MyCanvas extends React.Component {
       <Stage width={700} height={700}>
         <Layer>
           <Circle ref="circle" radius={50}
-                  x={100} y={100} fill="black"/>
+                  x={100} y={100} fill="black"
+                  draggable='true'
+                  onDragStart={this.onDrag}/>
+          <Text fontSize={30} fill={'green'} text="Hello"
+                draggable="true"></Text>
         </Layer>
       </Stage>
     );

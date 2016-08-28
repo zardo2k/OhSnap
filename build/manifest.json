@@ -1,0 +1,27 @@
+{
+  "name": "OhSnap!",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "OhSnap",
+  "homepage_url": "http://nutanix.com",
+  "icons": {
+    "16": "icons/icon16.png",
+    "19": "icons/icon19.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "default_locale": "en",
+  "background": {
+    "page": "background.html",
+    "persistent": true
+  },
+  "browser_action": {
+    "default_icon": "icons/icon128.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "<all_urls>"
+  ]
+}
