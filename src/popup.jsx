@@ -14,9 +14,13 @@ class MyCanvas extends React.Component {
     console.log("hi");
   }
 
+  onContentClick() {
+    console.log('Click');
+  }
+
   render () {
     return (
-      <Stage width={700} height={700}>
+      <Stage width={700} height={700} onContentClick={this.onContentClick}>
         <Layer>
           <Circle ref="circle" radius={50}
                   x={100} y={100} fill="black"
@@ -37,7 +41,7 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <p> Helloo WorldO!</p>
+        <p> Helloo Me!</p>
         <AwesomeComponent />
         <MyCanvas/>
       </div>
