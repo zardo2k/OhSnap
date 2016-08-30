@@ -23,6 +23,10 @@ var config = {
         test : /\.jsx?/,
         include : APP_DIR,
         loader : 'babel'
+      },
+      {
+        test: /\.less$/,
+        loader: "style!css!less"
       }
     ]
   }

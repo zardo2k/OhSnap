@@ -1,9 +1,11 @@
 import React from 'react';
 import {render} from 'react-dom';
 import $ from 'jquery';
-import _ from 'underscore';
 
-import WebAppMessenger from './inject/WebAppMessenger.jsx';
+
+import PrismApp from './inject/PrismApp.jsx';
+
+require("./main.less");
 
 class OhSnapApp {
   constructor(options) {
@@ -16,38 +18,6 @@ class OhSnapApp {
     var el = $('<div id="OhSnapWrapper"></div>');
     $('body').append(el);
     render(<this.app/>, document.getElementById('OhSnapWrapper'));
-  }
-}
-
-class PrismApp extends React.Component {
-  constructor() {
-    super();
-    this.chromeMessage = new WebAppMessenger();
-    this.chromeMessage.startExtensions();
-
-    _.bindAll(this, 'onKeyPress');
-  }
-  componentWillMount() {
-    console.log('Install Global Event Handler');
-    $('body').on('keypress', this.onKeyPress);
-  }
-
-  componentWillUnmount() {
-    console.log('Uninstall Global Event Handler');
-    $('body').off('keypress', this.onKeyPress);
-  }
-
-  onKeyPress(event) {
-    if (event.ctrlKey && event.shiftKey && event.key === 'S') {
-      console.log('Capture');
-      this.chromeMessage.captureScreenShot(function() {
-        console.log('Capture Done');
-      });
-    }
-  }
-
-  render() {
-    return (<div className="Prism"></div>);
   }
 }
 
@@ -83,19 +53,4 @@ class AppMonitor {
 var app = new AppMonitor(function(app) {
   console.log(app);
 });
-
-// class AppMonitor extends React.Component {
-//   render () {
-//     return (
-//       <div>
-//         <p> Helloo WdfdodGoodr!</p>
-//         <AwesomeComponent />
-//       </div>
-//     );
-//   }
-// }
-
-
-console.log($);
-//render(<AppMonitor/>, document.body);
 
