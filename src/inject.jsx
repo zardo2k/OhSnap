@@ -26,11 +26,13 @@ class AppMonitor {
     console.log('AppMonitor');
     this.pollingInternval = 2000;
     this.callback = callback;
-    this.startMonitor();
+    this.startMonitorPrismLoad();
+    this.startMonitorSupportCasePopup();
   }
 
-  // Poll every 2 seconds until we find
-  startMonitor() {
+  // This monitor the loading of Prism.  Once Prism is loaded
+  // We inject our logo to display.
+  startMonitorPrismLoad() {
     var intervalId = setInterval(function() {
       if (document.readyState === "complete") {
         if (this.isPrismLoaded()) {
@@ -40,6 +42,19 @@ class AppMonitor {
         }
       }
     }.bind(this), this.pollingInternval);
+  }
+
+  // This monitor the Prism Support Case popup and inject
+  startMonitorSupportCasePopup() {
+    var intervalId = setInterval(function() {
+      if ($('#popupSupportCase').length &&
+        $('.preview-wrapper').length === 0) {
+        var el = $('<div id="PrismApp" class="preview-wrapper">');
+        $('.n-modal-body').prepend(el);
+        $('#popupSupportCase').addClass('ohSnap');
+        render(<PrismApp/>, document.getElementsByClassName('preview-wrapper')[0]);
+      }
+    }, 2000);
   }
 
   // Return true if the webpage is a Prism page is loaded.
